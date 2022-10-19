@@ -17,18 +17,16 @@ class ConversorViewController: UIViewController {
     }
 
     @IBAction func botaoConverterCtoF(_ sender: UIButton) {
-        
-        let temperaturaC = Double(temperaturaCInput.text!)
-        let temperaturaF = converterCtoF(temperatura: temperaturaC)
+
+        let temperaturaF = converterCtoF(temperatura: Double(temperaturaCInput.text!))
         let mensagem = "Valor convertido: \(String(format: "%.1f °F", temperaturaF))"
         
         exibirAlerta(mensagem: mensagem)
     }
     
     @IBAction func botaoConverterCtoK(_ sender: UIButton) {
-        
-        let temperaturaC = Double(temperaturaCInput.text!)
-        let temperaturaK = converterCtoK(temperatura: temperaturaC)
+
+        let temperaturaK = converterCtoK(temperatura: Double(temperaturaCInput.text!))
         let mensagem = "Valor convertido: \(String(format: "%.1f °K", temperaturaK))"
         
         exibirAlerta(mensagem: mensagem)

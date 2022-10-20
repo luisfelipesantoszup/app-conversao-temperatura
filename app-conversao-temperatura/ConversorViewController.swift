@@ -16,19 +16,27 @@ class ConversorViewController: UIViewController {
     }
 
     @IBAction func botaoConverterCtoF(_ sender: UIButton) {
-
-        let temperaturaF = converterCtoF(temperatura: Double(temperaturaCInput.text!))
-        let mensagem = "Valor convertido: \(String(format: "%.1f °F", temperaturaF))"
-        
-        exibirAlertaDeConversao(mensagem: mensagem)
+        if !checarCampoEmBranco() {
+            let temperaturaF = converterCtoF(temperatura: Double(temperaturaCInput.text!))
+            let mensagem = "Valor convertido: \(String(format: "%.1f °F", temperaturaF))"
+            
+            exibirAlertaDeConversao(mensagem: mensagem)
+        }
+        else {
+            exibirAlertaDeCampoEmBranco()
+        }
     }
     
     @IBAction func botaoConverterCtoK(_ sender: UIButton) {
-
-        let temperaturaK = converterCtoK(temperatura: Double(temperaturaCInput.text!))
-        let mensagem = "Valor convertido: \(String(format: "%.1f °K", temperaturaK))"
-        
-        exibirAlertaDeConversao(mensagem: mensagem)
+        if !checarCampoEmBranco() {
+            let temperaturaK = converterCtoK(temperatura: Double(temperaturaCInput.text!))
+            let mensagem = "Valor convertido: \(String(format: "%.1f °K", temperaturaK))"
+            
+            exibirAlertaDeConversao(mensagem: mensagem)
+        }
+        else {
+            exibirAlertaDeCampoEmBranco()
+        }
     }
     
     func converterCtoF(temperatura: Double?) -> Double {
@@ -46,5 +54,17 @@ class ConversorViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
         
         self.present(alert, animated: true)
+    }
+    
+    func exibirAlertaDeCampoEmBranco() {
+        let alert = UIAlertController(title: "Erro!", message: "Favor digitar um valor.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+        
+        self.present(alert, animated: true)
+    }
+    
+    func checarCampoEmBranco() -> Bool {
+        return temperaturaCInput.text! == "" ? true : false
     }
 }

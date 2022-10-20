@@ -57,7 +57,12 @@ class ConversorViewController: UIViewController {
     }
     
     func checarSeCampoEstaEmBranco() -> Bool {
-        return temperaturaCInput.text!.isEmpty ? true : false
+        if let input = temperaturaCInput.text, input.isEmpty {
+            return true
+        }
+        else {
+            return false
+        }
     }
     
     func checarSeInputEhNumerico(input: String) -> Bool {

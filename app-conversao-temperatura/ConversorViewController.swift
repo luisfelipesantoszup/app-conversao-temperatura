@@ -65,6 +65,6 @@ class ConversorViewController: UIViewController {
     }
     
     func checarCampoEmBranco() -> Bool {
-        return temperaturaCInput.text! == "" ? true : false
+        return temperaturaCInput.text!.isEmpty ? true : false
     }
 }

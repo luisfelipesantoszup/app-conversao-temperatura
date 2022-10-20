@@ -16,26 +16,26 @@ class ConversorViewController: UIViewController {
     }
 
     @IBAction func botaoConverterCtoF(_ sender: UIButton) {
-        if !checarCampoEmBranco() {
+        if !checarSeCampoEstaEmBranco() && checarSeInputEhNumerico(value: temperaturaCInput.text!) {
             let temperaturaF = converterCtoF(temperatura: Double(temperaturaCInput.text!))
             let mensagem = "Valor convertido: \(String(format: "%.1f °F", temperaturaF))"
             
-            exibirAlertaDeConversao(mensagem: mensagem)
+            exibirAlerta(titulo: "Pronto!", mensagem: mensagem)
         }
         else {
-            exibirAlertaDeCampoEmBranco()
+            exibirAlerta(titulo: "Erro!", mensagem: "Favor digitar um valor numérico.")
         }
     }
     
     @IBAction func botaoConverterCtoK(_ sender: UIButton) {
-        if !checarCampoEmBranco() {
+        if !checarSeCampoEstaEmBranco() && checarSeInputEhNumerico(value: temperaturaCInput.text!) {
             let temperaturaK = converterCtoK(temperatura: Double(temperaturaCInput.text!))
             let mensagem = "Valor convertido: \(String(format: "%.1f °K", temperaturaK))"
             
-            exibirAlertaDeConversao(mensagem: mensagem)
+            exibirAlerta(titulo: "Pronto!", mensagem: mensagem)
         }
         else {
-            exibirAlertaDeCampoEmBranco()
+            exibirAlerta(titulo: "Erro!", mensagem: "Favor digitar um valor numérico.")
         }
     }
     
@@ -47,24 +47,21 @@ class ConversorViewController: UIViewController {
         return (temperatura ?? 0) + 273.15
     }
     
-    func exibirAlertaDeConversao(mensagem: String) {
+    func exibirAlerta(titulo:String, mensagem: String) {
         
-        let alert = UIAlertController(title: "Pronto!", message: mensagem, preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
-        
-        self.present(alert, animated: true)
-    }
-    
-    func exibirAlertaDeCampoEmBranco() {
-        let alert = UIAlertController(title: "Erro!", message: "Favor digitar um valor.", preferredStyle: .alert)
+        let alert = UIAlertController(title: titulo, message: mensagem, preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
         
         self.present(alert, animated: true)
     }
     
-    func checarCampoEmBranco() -> Bool {
+    func checarSeCampoEstaEmBranco() -> Bool {
         return temperaturaCInput.text!.isEmpty ? true : false
+    }
+    
+    func checarSeInputEhNumerico(value: String) -> Bool {
+        let set = CharacterSet(charactersIn: value)
+        return CharacterSet.decimalDigits.isSuperset(of: set) ? true : false
     }
 }

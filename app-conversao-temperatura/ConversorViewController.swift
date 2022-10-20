@@ -13,7 +13,6 @@ class ConversorViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
     @IBAction func botaoConverterCtoF(_ sender: UIButton) {
@@ -21,7 +20,7 @@ class ConversorViewController: UIViewController {
         let temperaturaF = converterCtoF(temperatura: Double(temperaturaCInput.text!))
         let mensagem = "Valor convertido: \(String(format: "%.1f °F", temperaturaF))"
         
-        exibirAlerta(mensagem: mensagem)
+        exibirAlertaDeConversao(mensagem: mensagem)
     }
     
     @IBAction func botaoConverterCtoK(_ sender: UIButton) {
@@ -29,7 +28,7 @@ class ConversorViewController: UIViewController {
         let temperaturaK = converterCtoK(temperatura: Double(temperaturaCInput.text!))
         let mensagem = "Valor convertido: \(String(format: "%.1f °K", temperaturaK))"
         
-        exibirAlerta(mensagem: mensagem)
+        exibirAlertaDeConversao(mensagem: mensagem)
     }
     
     func converterCtoF(temperatura: Double?) -> Double {
@@ -40,7 +39,7 @@ class ConversorViewController: UIViewController {
         return (temperatura ?? 0) + 273.15
     }
     
-    func exibirAlerta(mensagem: String) {
+    func exibirAlertaDeConversao(mensagem: String) {
         
         let alert = UIAlertController(title: "Pronto!", message: mensagem, preferredStyle: .alert)
         

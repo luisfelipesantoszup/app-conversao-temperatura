@@ -16,26 +16,26 @@ class ConversorViewController: UIViewController {
     }
 
     @IBAction func botaoConverterCtoF(_ sender: UIButton) {
-        if !checarSeCampoEstaEmBranco() && checarSeInputEhNumerico(input: temperaturaCInput.text!) {
+        if !checarSeCampoEstaEmBranco() && checarSeInputEhNumerico(temperaturaCInput.text!) {
             let temperaturaF = converterCtoF(temperatura: Double(temperaturaCInput.text!))
             let mensagem = "Valor convertido: \(String(format: "%.1f °F", temperaturaF))"
             
-            exibirAlerta(titulo: "Pronto!", mensagem: mensagem)
+            exibirAlerta("Pronto!", mensagem)
         }
         else {
-            exibirAlerta(titulo: "Erro!", mensagem: "Favor digitar um valor numérico.")
+            exibirAlerta("Erro!", "Favor digitar um valor numérico.")
         }
     }
     
     @IBAction func botaoConverterCtoK(_ sender: UIButton) {
-        if !checarSeCampoEstaEmBranco() && checarSeInputEhNumerico(input: temperaturaCInput.text!) {
+        if !checarSeCampoEstaEmBranco() && checarSeInputEhNumerico(temperaturaCInput.text!) {
             let temperaturaK = converterCtoK(temperatura: Double(temperaturaCInput.text!))
             let mensagem = "Valor convertido: \(String(format: "%.1f °K", temperaturaK))"
             
-            exibirAlerta(titulo: "Pronto!", mensagem: mensagem)
+            exibirAlerta("Pronto!", mensagem)
         }
         else {
-            exibirAlerta(titulo: "Erro!", mensagem: "Favor digitar um valor numérico.")
+            exibirAlerta("Erro!", "Favor digitar um valor numérico.")
         }
     }
     
@@ -47,7 +47,7 @@ class ConversorViewController: UIViewController {
         return (temperatura ?? 0) + 273.15
     }
     
-    func exibirAlerta(titulo:String, mensagem: String) {
+    func exibirAlerta(_ titulo: String, _ mensagem: String) {
         
         let alert = UIAlertController(title: titulo, message: mensagem, preferredStyle: .alert)
         
@@ -65,7 +65,7 @@ class ConversorViewController: UIViewController {
         }
     }
     
-    func checarSeInputEhNumerico(input: String) -> Bool {
+    func checarSeInputEhNumerico(_ input: String) -> Bool {
         let set = CharacterSet(charactersIn: input)
         return CharacterSet.decimalDigits.isSuperset(of: set) ? true : false
     }

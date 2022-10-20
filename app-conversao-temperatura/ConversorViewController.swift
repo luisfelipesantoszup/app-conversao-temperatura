@@ -16,7 +16,7 @@ class ConversorViewController: UIViewController {
     }
 
     @IBAction func botaoConverterCtoF(_ sender: UIButton) {
-        if !checarSeCampoEstaEmBranco() && checarSeInputEhNumerico(value: temperaturaCInput.text!) {
+        if !checarSeCampoEstaEmBranco() && checarSeInputEhNumerico(input: temperaturaCInput.text!) {
             let temperaturaF = converterCtoF(temperatura: Double(temperaturaCInput.text!))
             let mensagem = "Valor convertido: \(String(format: "%.1f °F", temperaturaF))"
             
@@ -28,7 +28,7 @@ class ConversorViewController: UIViewController {
     }
     
     @IBAction func botaoConverterCtoK(_ sender: UIButton) {
-        if !checarSeCampoEstaEmBranco() && checarSeInputEhNumerico(value: temperaturaCInput.text!) {
+        if !checarSeCampoEstaEmBranco() && checarSeInputEhNumerico(input: temperaturaCInput.text!) {
             let temperaturaK = converterCtoK(temperatura: Double(temperaturaCInput.text!))
             let mensagem = "Valor convertido: \(String(format: "%.1f °K", temperaturaK))"
             
@@ -60,8 +60,8 @@ class ConversorViewController: UIViewController {
         return temperaturaCInput.text!.isEmpty ? true : false
     }
     
-    func checarSeInputEhNumerico(value: String) -> Bool {
-        let set = CharacterSet(charactersIn: value)
+    func checarSeInputEhNumerico(input: String) -> Bool {
+        let set = CharacterSet(charactersIn: input)
         return CharacterSet.decimalDigits.isSuperset(of: set) ? true : false
     }
 }

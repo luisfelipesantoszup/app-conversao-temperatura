@@ -9,6 +9,8 @@ import UIKit
 
 class ConversorViewController: UIViewController {
     
+    typealias MensagemDeValidacao = String
+    
     @IBOutlet weak var temperaturaCInput: UITextField!
 
     override func viewDidLoad() {
@@ -16,38 +18,57 @@ class ConversorViewController: UIViewController {
     }
 
     @IBAction func botaoConverterCtoF(_ sender: UIButton) {
-        if !checarSeCampoEstaEmBranco() && checarSeInputEhNumerico(temperaturaCInput.text!) {
-            let temperaturaF = converterCtoF(temperatura: Double(temperaturaCInput.text!))
-            let mensagem = "Valor convertido: \(String(format: "%.1f °F", temperaturaF))"
+        
+        switch validarCampo() {
             
+        case(false, let mensagem):
+            exibirAlerta("Erro!", mensagem)
+            
+        default:
+            let temperaturaF = converterCtoF(Double(temperaturaCInput.text!))
+            let mensagem = "Valor convertido: \(String(format: "%.1f °F", temperaturaF))."
             exibirAlerta("Pronto!", mensagem)
-        }
-        else {
-            exibirAlerta("Erro!", "Favor digitar um valor numérico.")
         }
     }
     
     @IBAction func botaoConverterCtoK(_ sender: UIButton) {
-        if !checarSeCampoEstaEmBranco() && checarSeInputEhNumerico(temperaturaCInput.text!) {
-            let temperaturaK = converterCtoK(temperatura: Double(temperaturaCInput.text!))
-            let mensagem = "Valor convertido: \(String(format: "%.1f °K", temperaturaK))"
+        
+        switch validarCampo() {
             
+        case(false, let mensagem):
+            exibirAlerta("Erro!", mensagem)
+            
+        default:
+            let temperaturaK = converterCtoK(Double(temperaturaCInput.text!))
+            let mensagem = "Valor convertido: \(String(format: "%.1f °K", temperaturaK))."
             exibirAlerta("Pronto!", mensagem)
-        }
-        else {
-            exibirAlerta("Erro!", "Favor digitar um valor numérico.")
         }
     }
     
-    func converterCtoF(temperatura: Double?) -> Double {
+    func validarCampo() -> (Bool, MensagemDeValidacao?) {
+        
+        guard let tempInput = temperaturaCInput.text, !tempInput.isEmpty else {
+            return (false, "O campo não pode estar vazio.")
+        }
+        
+        guard let tempInput = temperaturaCInput.text, checarSeInputEhNumerico(tempInput) else {
+            return (false, "Favor inserir um número.")
+        }
+        
+        return (true, nil)
+    }
+    
+    func converterCtoF(_ temperatura: Double?) -> Double {
+
         return ((temperatura ?? 0) * 1.8) + 32
     }
     
-    func converterCtoK(temperatura: Double?) -> Double {
+    func converterCtoK(_ temperatura: Double?) -> Double {
+        
         return (temperatura ?? 0) + 273.15
     }
     
-    func exibirAlerta(_ titulo: String, _ mensagem: String) {
+    func exibirAlerta(_ titulo: String, _ mensagem: String?) {
         
         let alert = UIAlertController(title: titulo, message: mensagem, preferredStyle: .alert)
         
@@ -56,17 +77,9 @@ class ConversorViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
-    func checarSeCampoEstaEmBranco() -> Bool {
-        if let input = temperaturaCInput.text, input.isEmpty {
-            return true
-        }
-        else {
-            return false
-        }
-    }
-    
     func checarSeInputEhNumerico(_ input: String) -> Bool {
+        
         let set = CharacterSet(charactersIn: input)
-        return CharacterSet.decimalDigits.isSuperset(of: set) ? true : false
+        return CharacterSet.decimalDigits.isSuperset(of: set)
     }
 }

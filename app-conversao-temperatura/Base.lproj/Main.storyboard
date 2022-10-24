@@ -40,7 +40,7 @@
                                                 </subviews>
                                             </stackView>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="°C" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RHK-Tb-OVh" userLabel="TextField Temperatura C">
-                                                <rect key="frame" x="90" y="104" width="106" height="34"/>
+                                                <rect key="frame" x="121" y="104" width="44.5" height="34"/>
                                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -54,7 +54,7 @@
                                                             <constraint firstAttribute="height" constant="48" id="ebE-3v-Pyl"/>
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="°C para °F" cornerStyle="capsule">
+                                                        <buttonConfiguration key="configuration" style="filled" title="°C para °F" cornerStyle="small">
                                                             <color key="baseForegroundColor" systemColor="labelColor"/>
                                                             <color key="baseBackgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                         </buttonConfiguration>
@@ -68,7 +68,7 @@
                                                             <constraint firstAttribute="height" constant="48" id="SLi-dU-Sq8"/>
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="°C para °K" cornerStyle="capsule">
+                                                        <buttonConfiguration key="configuration" style="filled" title="°C para °K" cornerStyle="small">
                                                             <color key="baseForegroundColor" systemColor="labelColor"/>
                                                             <color key="baseBackgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                                         </buttonConfiguration>
@@ -80,8 +80,6 @@
                                             </stackView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="RHK-Tb-OVh" firstAttribute="leading" secondItem="Ezz-FV-yLz" secondAttribute="leading" constant="90" id="3ER-8y-612"/>
-                                            <constraint firstAttribute="trailing" secondItem="RHK-Tb-OVh" secondAttribute="trailing" constant="90" id="WYq-Xi-8Tq"/>
                                             <constraint firstItem="koH-u5-H4q" firstAttribute="centerX" secondItem="RHK-Tb-OVh" secondAttribute="centerX" id="h4o-Hv-gNa"/>
                                         </constraints>
                                     </stackView>
